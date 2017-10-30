@@ -1,4 +1,4 @@
-name: MegsDijetKernelSimp
+name: MyDijetKernelSimp
 doc: This is something I got from Meghan
 stationary: false
 params: [a,b,c,d]

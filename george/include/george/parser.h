@@ -259,7 +259,7 @@ kernels::Kernel* parse_kernel_spec (py::object& kernel_spec) {
       
       size_t ndim = py::int_(kernel_spec.attr("ndim"));
       py::list axes = py::list(kernel_spec.attr("axes"));
-      kernel = new kernels::MegsDijetKernelSimp (
+      kernel = new kernels::MyDijetKernelSimp (
           
           py::float_(kernel_spec.attr("a")),
           py::float_(kernel_spec.attr("b")),
