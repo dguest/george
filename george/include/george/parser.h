@@ -259,6 +259,26 @@ kernels::Kernel* parse_kernel_spec (py::object& kernel_spec) {
       
       size_t ndim = py::int_(kernel_spec.attr("ndim"));
       py::list axes = py::list(kernel_spec.attr("axes"));
+      kernel = new kernels::ExpSquaredCenteredKernel (
+          
+          py::float_(kernel_spec.attr("m")),
+          py::float_(kernel_spec.attr("t")),
+          
+          ndim,
+          py::len(axes)
+      );
+      
+
+      for (size_t i = 0; i < py::len(axes); ++i) {
+        kernel->set_axis(i, py::int_(axes[py::int_(i)]));
+      }
+
+      break; }
+    
+    case 8: {
+      
+      size_t ndim = py::int_(kernel_spec.attr("ndim"));
+      py::list axes = py::list(kernel_spec.attr("axes"));
       kernel = new kernels::MyDijetKernelSimp (
           
           py::float_(kernel_spec.attr("a")),
@@ -277,7 +297,7 @@ kernels::Kernel* parse_kernel_spec (py::object& kernel_spec) {
 
       break; }
     
-    case 8: {
+    case 9: {
       
       size_t ndim = py::int_(kernel_spec.attr("ndim"));
       py::list axes = py::list(kernel_spec.attr("axes"));
@@ -297,7 +317,7 @@ kernels::Kernel* parse_kernel_spec (py::object& kernel_spec) {
 
       break; }
     
-    case 9: {
+    case 10: {
       
       size_t ndim = py::int_(kernel_spec.attr("ndim"));
       py::list axes = py::list(kernel_spec.attr("axes"));
@@ -317,7 +337,7 @@ kernels::Kernel* parse_kernel_spec (py::object& kernel_spec) {
 
       break; }
     
-    case 10: {
+    case 11: {
       
       py::object metric = kernel_spec.attr("metric");
       size_t metric_type = py::int_(metric.attr("metric_type"));
@@ -378,7 +398,7 @@ kernels::Kernel* parse_kernel_spec (py::object& kernel_spec) {
 
       break; }
     
-    case 11: {
+    case 12: {
       
       py::object metric = kernel_spec.attr("metric");
       size_t metric_type = py::int_(metric.attr("metric_type"));
@@ -439,7 +459,7 @@ kernels::Kernel* parse_kernel_spec (py::object& kernel_spec) {
 
       break; }
     
-    case 12: {
+    case 13: {
       
       size_t ndim = py::int_(kernel_spec.attr("ndim"));
       py::list axes = py::list(kernel_spec.attr("axes"));
@@ -459,7 +479,7 @@ kernels::Kernel* parse_kernel_spec (py::object& kernel_spec) {
 
       break; }
     
-    case 13: {
+    case 14: {
       
       py::object metric = kernel_spec.attr("metric");
       size_t metric_type = py::int_(metric.attr("metric_type"));
