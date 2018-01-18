@@ -543,6 +543,27 @@ kernels::Kernel* parse_kernel_spec (py::object& kernel_spec) {
 
       break; }
     
+    case 15: {
+      
+      size_t ndim = py::int_(kernel_spec.attr("ndim"));
+      py::list axes = py::list(kernel_spec.attr("axes"));
+      kernel = new kernels::SignalKernel (
+          
+          py::float_(kernel_spec.attr("m")),
+          py::float_(kernel_spec.attr("t")),
+          py::float_(kernel_spec.attr("L")),
+          
+          ndim,
+          py::len(axes)
+      );
+      
+
+      for (size_t i = 0; i < py::len(axes); ++i) {
+        kernel->set_axis(i, py::int_(axes[py::int_(i)]));
+      }
+
+      break; }
+    
     default:
       throw std::invalid_argument("unrecognized kernel");
   }
